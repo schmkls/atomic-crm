@@ -1,4 +1,4 @@
-import { Grid, Stack } from '@mui/material';
+import { Box, Grid, Stack } from '@mui/material';
 import { DashboardActivityLog } from './DashboardActivityLog';
 import { DealsChart } from './DealsChart';
 import { HotContacts } from './HotContacts';
@@ -45,25 +45,47 @@ export const Dashboard = () => {
     }
 
     return (
-        <Grid container spacing={2} mt={1} rowGap={4}>
-            <Grid item xs={12} md={3}>
-                <Stack gap={4}>
-                    {import.meta.env.VITE_IS_DEMO === 'true' ? (
-                        <Welcome />
-                    ) : null}
-                    <HotContacts />
-                </Stack>
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <Stack gap={4}>
-                    {totalDeal ? <DealsChart /> : null}
-                    <DashboardActivityLog />
-                </Stack>
-            </Grid>
+        <Box sx={{ position: 'relative' }}>
+            <Grid container spacing={2} mt={1} rowGap={4}>
+                <Grid item xs={12} md={3}>
+                    <Stack gap={4}>
+                        {import.meta.env.VITE_IS_DEMO === 'true' ? (
+                            <Welcome />
+                        ) : null}
+                        <HotContacts />
+                    </Stack>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Stack gap={4}>
+                        {totalDeal ? <DealsChart /> : null}
+                        <DashboardActivityLog />
+                    </Stack>
+                </Grid>
 
-            <Grid item xs={12} md={3}>
-                <TasksList />
+                <Grid item xs={12} md={3}>
+                    <TasksList />
+                </Grid>
             </Grid>
-        </Grid>
+            <Box
+                component="iframe"
+                src="http://localhost:3000"
+                title="Embedded App"
+                frameBorder={0}
+                sx={{
+                    position: 'fixed',
+                    right: 24,
+                    bottom: 24,
+                    zIndex: theme => theme.zIndex.modal + 1,
+                    width: 'auto',
+                    height: 'auto',
+                    backgroundColor: 'transparent',
+                    minHeight: 420,
+                    minWidth: 360,
+                    border: 0,
+                    outline: 'none',
+                    boxShadow: 'none',
+                }}
+            />
+        </Box>
     );
 };
