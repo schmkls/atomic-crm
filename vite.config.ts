@@ -87,6 +87,9 @@ export default defineConfig({
     build: {
         sourcemap: true,
     },
+    server: {
+        port: 3002,
+    },
     resolve: {
         alias,
         preserveSymlinks: true,
